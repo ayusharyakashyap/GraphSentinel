@@ -1,0 +1,160 @@
+{
+  "all_checks_passed": true,
+  "baseline": {
+    "calibrated_probability": false,
+    "graph_queries": 0,
+    "llm_tool_calls": 0,
+    "method": "Map the alert's severity to illustrative points; use no graph, event, or evidence context.",
+    "name": "alert-only severity rule",
+    "severity_points": {
+      "critical": 85,
+      "high": 60,
+      "low": 15,
+      "medium": 35
+    }
+  },
+  "database": "graphsentinel",
+  "evaluated_at": "2026-10-12T18:13:54.184677+00:00",
+  "fixture": "data/demo_graph.json",
+  "limitations": [
+    "Only the two hand-authored synthetic scenarios are evaluated; results are not production security accuracy.",
+    "The alert-only baseline is a transparent illustrative comparator, not a calibrated detector.",
+    "LLM calls are disabled for reproducibility; the fallback investigation reports zero LLM tool calls.",
+    "Latency reflects this local process, persistent Docker database, and synthetic graph only."
+  ],
+  "response_verification": {
+    "action_id": "4288a6ed-e83a-4b3f-9702-4c6fd5a52694",
+    "approval_required": true,
+    "attempted": true,
+    "latency_ms": 387.0695,
+    "simulated_only": true,
+    "status": "VERIFIED",
+    "status_sequence": [
+      "PROPOSED",
+      "APPROVED",
+      "EXECUTED_SIMULATED",
+      "VERIFIED"
+    ],
+    "verified": true
+  },
+  "scenarios": [
+    {
+      "alert_id": "alert-2026-1015-001",
+      "alert_only_baseline": {
+        "basis": "Illustrative severity-only rule; no graph traversal or evidence corroboration.",
+        "graph_queries": 0,
+        "latency_ms": 0.0029,
+        "risk_level": "high",
+        "risk_score": 60,
+        "tool_calls": 0
+      },
+      "graph_powered": {
+        "evidence_complete_for_expected_set": true,
+        "expected_path_found": true,
+        "expected_path_node_ids": [
+          "alert-2026-1015-001",
+          "id-ava-chen",
+          "dev-ava-laptop",
+          "svc-deploy",
+          "svc-artifact",
+          "vuln-demo-2026-041"
+        ],
+        "expected_path_relationship_types": [
+          "OBSERVED_ON",
+          "USES",
+          "CONNECTS_TO",
+          "DEPENDS_ON",
+          "HAS_VULNERABILITY"
+        ],
+        "expected_risk_score": 85,
+        "investigation_end_to_end_latency_ms": 2101.9737,
+        "llm_tool_call_count": 0,
+        "matching_episode_count": 100,
+        "matching_episode_count_is_capped": true,
+        "memory_retrieval_latency_ms": 557.714,
+        "memory_retrieval_success": true,
+        "mode": "fallback",
+        "relevant_evidence_expected": [
+          "ev-config-change",
+          "ev-deploy-reach",
+          "ev-geo-ava",
+          "ev-privilege-ava",
+          "ev-vuln-deploy"
+        ],
+        "relevant_evidence_retrieved": [
+          "ev-config-change",
+          "ev-deploy-reach",
+          "ev-geo-ava",
+          "ev-privilege-ava",
+          "ev-vuln-deploy"
+        ],
+        "repository_query_count": 15,
+        "repository_query_latency_ms_mean": 138.9144,
+        "repository_query_latency_ms_p95": 587.7387,
+        "repository_query_latency_ms_total": 2083.7156,
+        "risk_consistent": true,
+        "risk_level": "critical",
+        "risk_score": 85,
+        "unsupported_assertions_detected": []
+      },
+      "passed": true,
+      "risk_delta_graph_minus_baseline": 25,
+      "scenario": "higher-risk-privileged-login"
+    },
+    {
+      "alert_id": "alert-2026-1015-002",
+      "alert_only_baseline": {
+        "basis": "Illustrative severity-only rule; no graph traversal or evidence corroboration.",
+        "graph_queries": 0,
+        "latency_ms": 0.0022,
+        "risk_level": "moderate",
+        "risk_score": 35,
+        "tool_calls": 0
+      },
+      "graph_powered": {
+        "evidence_complete_for_expected_set": true,
+        "expected_path_found": true,
+        "expected_path_node_ids": [
+          "alert-2026-1015-002",
+          "id-noah-patel",
+          "dev-noah-laptop",
+          "svc-hr"
+        ],
+        "expected_path_relationship_types": [
+          "OBSERVED_ON",
+          "USES",
+          "CONNECTS_TO"
+        ],
+        "expected_risk_score": 0,
+        "investigation_end_to_end_latency_ms": 449.1433,
+        "llm_tool_call_count": 0,
+        "matching_episode_count": 100,
+        "matching_episode_count_is_capped": true,
+        "memory_retrieval_latency_ms": 222.1761,
+        "memory_retrieval_success": true,
+        "mode": "fallback",
+        "relevant_evidence_expected": [
+          "ev-noah-denied",
+          "ev-noah-healthy-device",
+          "ev-noah-new-region"
+        ],
+        "relevant_evidence_retrieved": [
+          "ev-noah-denied",
+          "ev-noah-healthy-device",
+          "ev-noah-new-region"
+        ],
+        "repository_query_count": 13,
+        "repository_query_latency_ms_mean": 34.2227,
+        "repository_query_latency_ms_p95": 89.2739,
+        "repository_query_latency_ms_total": 444.8949,
+        "risk_consistent": true,
+        "risk_level": "low",
+        "risk_score": 0,
+        "unsupported_assertions_detected": []
+      },
+      "passed": true,
+      "risk_delta_graph_minus_baseline": -35,
+      "scenario": "lower-risk-standard-login"
+    }
+  ]
+}

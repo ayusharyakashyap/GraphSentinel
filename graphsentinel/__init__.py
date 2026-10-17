@@ -1,0 +1,1 @@
+"""GraphSentinel graph database foundation."""
